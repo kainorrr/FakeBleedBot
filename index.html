@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Bleed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('fbleed.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: white;
+        }
+        #header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            position: absolute;
+            width: 100%;
+        }
+        #header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: red;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: absolute;
+        }
+        #invite {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #faq {
+            top: 20px;
+            right: 20px;
+        }
+        #main {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #content {
+            text-align: center;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Fake Bleed</h1>
+        <div id="invite" class="tab">Invite</div>
+        <div id="faq" class="tab">FAQ</div>
+        <div id="main" class="tab">Main</div>
+    </div>
+    <div id="content">
+        <!-- Content can go here if needed -->
+    </div>
+
+    <!-- JavaScript to handle tab actions -->
+    <script>
+        document.getElementById('invite').addEventListener('click', function() {
+            window.location.href = 'https://discord.com/oauth2/authorize?client_id=1242783552160923728&permissions=8&scope=bot';
+        });
+
+        document.getElementById('faq').addEventListener('click', function() {
+            fetch('https://raw.githubusercontent.com/courrtdd/FakeBleedFaq/main/FAQ')
+            .then(response => response.text())
+            .then(data => {
+                // Replace the content of #content with the fetched FAQ content
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching FAQ:', error);
+            });
+        });
+
+        document.getElementById('main').addEventListener('click', function() {
+            // Main tab clicked, no need for action since bleed.png is already filling the screen
+        });
+    </script>
+</body>
+</html>
